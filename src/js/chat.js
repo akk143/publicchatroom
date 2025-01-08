@@ -68,10 +68,10 @@ export function Chatroom(room, username){
         });
 
     };
-
+    
     const updateChatroom = (newroom) => {
         currrom = newroom;
-        console.log(`Room changed to ${currrom}`);
+        // console.log(`Room changed to ${currrom}`);
     };
 
     const updateUsername = (newusername) => {
@@ -100,6 +100,7 @@ export function Chatroom(room, username){
 
                 getdatas.docs.forEach(async(getdata) => {
                     await deleteDoc(doc(db, 'chats', getdata.id));
+
                 });
 
            }catch(error){
