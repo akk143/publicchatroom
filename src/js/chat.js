@@ -1,5 +1,5 @@
 import { db } from './firebase.js';
-import { collection, addDoc, onSnapshot, Timestamp, query, where, orderBy } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, Timestamp, query, where, orderBy, deleteDoc, getDocs, doc } from 'firebase/firestore';
 
 
 export function Chatroom(room, username){
@@ -82,5 +82,35 @@ export function Chatroom(room, username){
         console.log(`Username changed to ${curruser}`);
     };
 
+    // Delete all messages every 15s
+
+    const deleteAllmessages = () => {
+        
+        let deleteinter = setInterval(async() => {
+
+           try{
+                const getdatas = await getDocs(dbRef);
+
+                if(getdatas.empty){
+
+                    clearInterval(deleteinter);
+
+                    return;
+                }
+
+                getdatas.docs.forEach(async(getdata) => {
+                    await deleteDoc(doc(db, 'chats', getdata.id));
+                });
+
+           }catch(error){
+                console.error("Error deleting messages: ", error);
+           }
+            
+        }, 15000);
+    }
+
+    deleteAllmessages();
+
     return { addChat, getChats, updateChatroom, updateUsername };
+    
 }

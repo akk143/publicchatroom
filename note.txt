@@ -147,7 +147,23 @@ import express from 'express';
 
 => Deploy on Cloud Server
 
-1. your project need to upload Repo public/private to Github
+1. your project need Repo public/private to Github
 
-2. 
- 
+2. https://render.com
+
+
+3. Prepare the build output
+  your project must builded typically located in the 'dist' directory
+
+4. Create a new static site
+click > 'New' static site > Github > your acc > choose repo > click "connect"
+
+
+5.  Name = publicchatroom
+    Branch:main
+    Build Command : npm run build
+    Public Direcory : dist
+    Start Command : node server.js
+
+
+6. Enviroment Variables = copy paste .env data to Enviroment Variables

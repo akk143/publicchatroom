@@ -1,0 +1,1 @@
+import{A as m}from"./main-CZp6odc2.js";const r=document.getElementById("resetpassword"),n=document.getElementById("msg");r.addEventListener("submit",e=>{e.preventDefault();const{resetPassword:t}=m(),s=document.getElementById("resetemail").value.trim();t(s,n)});
